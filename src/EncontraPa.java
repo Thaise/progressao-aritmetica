@@ -23,10 +23,8 @@ public class EncontraPa {
 		System.out.print("Digite o enésimo termo que deseja descobrir:");
 		int n = entrada.nextInt();
 		
-		calcula(numerosInteiros, n);
-		
 		System.out.println("O termo "+n+" dessa PA é "+calcula(numerosInteiros, n)+". " +
-			"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
+				"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
 		
 		desejaContinuar();
 		}catch(EncontraPAException e){
