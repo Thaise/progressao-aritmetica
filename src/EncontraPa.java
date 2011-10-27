@@ -1,25 +1,60 @@
 import java.util.Scanner;
+import java.util.Vector;
 
 public class EncontraPa {
 	
-	public static void main(String[]args) {
+	public static void main(String[]args) throws EncontraPAException {
 		
 		Scanner entrada = new Scanner(System.in);
 		
-		System.out.println("Digite uma sequencia numérica separando os números por vírgula:");
+		System.out.print("Digite uma sequencia numérica separando os números por vírgula:");
 		String conjuntos = entrada.nextLine();
-		String numerosSeparados[] = conjuntos.split(",");	
-	
-		System.out.println("Digite o enésimo termo que deseja descobrir:");
+		String conjuntos2 = conjuntos.trim();
+		String numerosSeparados[] = conjuntos2.split(",");
+		
+		int[] numerosInteiros = new int[numerosSeparados.length];
+		
+		for(int i = 0; i < numerosSeparados.length; i++){
+			numerosInteiros[i] = Integer.parseInt(numerosSeparados[i]);
+		}
+		
+		try{
+		verificaSeEUmaPa(numerosInteiros);
+			
+		System.out.print("Digite o enésimo termo que deseja descobrir:");
 		int n = entrada.nextInt();
-
-		calcula(numerosSeparados, n);
+		
+		calcula(numerosInteiros, n);
+		
+		System.out.println(conjuntos+"..."+calcula(numerosInteiros, n));
 		
 		desejaContinuar();
-			
+		}catch(EncontraPAException e){
+			System.out.println("Não é uma P.A.!");
+			desejaContinuar();
+		}
+
 	}
 
-	private static void desejaContinuar() {
+	private static void verificaSeEUmaPa(int[] numerosInteiros) throws EncontraPAException {
+
+		int a1 = numerosInteiros[0];
+		int segundoNumero = numerosInteiros[1];
+		
+		int r = segundoNumero - a1;
+		
+		int rTeste = 0;
+		
+		for(int i = 2; i < numerosInteiros.length; i++){
+			rTeste = numerosInteiros[i] - numerosInteiros[i-1];
+		}
+			
+		if(r != rTeste || numerosInteiros.length <= 2){
+			throw new EncontraPAException(null);	
+		}
+	}
+
+	private static void desejaContinuar() throws EncontraPAException {
 		
 		Scanner entrada = new Scanner(System.in);
 		
@@ -38,46 +73,17 @@ public class EncontraPa {
 		
 	}
 
-	public static String calcula(String[]numerosSeparados, int n) {
-	
-	String resultado = "";
-	String conjuntos = ""; 
-	
-	int segundoNumero =  Integer.parseInt(numerosSeparados[1]);
-	int a1 = Integer.parseInt(numerosSeparados[0]);
+	public static int calcula(int[] numerosInteiros, int n) {
+		
+	int a1 = numerosInteiros[0];
+	int segundoNumero = numerosInteiros[1];
 	
 	int r = segundoNumero - a1;
-	
-	int rTeste = 0;
-		
-	for(int i = 1; i < numerosSeparados.length; i++){	
-		conjuntos = conjuntos+","+numerosSeparados[i];
-	}
-	
-	for(int i = 2; i < numerosSeparados.length; i++){
-		int numeroQualquer = Integer.parseInt(numerosSeparados[i]);
-		int numeroQualquerMenosUm = Integer.parseInt(numerosSeparados[i-1]);
-		rTeste = numeroQualquer - numeroQualquerMenosUm;
-	}
-		
-	if(r != rTeste || numerosSeparados.length <= 2){
-	
-		resultado = "Não é uma P.A.!";
-	
-	
-	}else{
-		 	
-		int an = a1 + ((n - 1)* r);
-			
-		resultado = "O "+n+" termo da P.A. é "+an+" -> "+a1+conjuntos+"..."+an;
-	
-	}
-	
-	System.out.println(resultado);
-	
-	
-	return resultado;
-	
+	int an = 0;
+
+	an = a1 + ((n - 1)* r); 
+
+		return an;
 	}
 
 }
