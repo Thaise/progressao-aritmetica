@@ -25,7 +25,8 @@ public class EncontraPa {
 		
 		calcula(numerosInteiros, n);
 		
-		System.out.println(conjuntos+"..."+calcula(numerosInteiros, n));
+		System.out.println("O termo "+n+" dessa PA é "+calcula(numerosInteiros, n)+". " +
+			"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
 		
 		desejaContinuar();
 		}catch(EncontraPAException e){
