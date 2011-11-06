@@ -5,8 +5,7 @@ public class EncontraPa {
 	public static void main(String[]args) throws EncontraPAException {
 		
 		Scanner entrada = new Scanner(System.in);
-		
-		System.out.print("Digite uma sequencia numÃ©rica separando os nÃºmeros por vÃ­rgula:");
+		System.out.print("Digite uma sequencia numérica separando os números por vírgula:");
 		String conjuntos = entrada.nextLine();
 		String conjuntos2 = conjuntos.trim();
 		String numerosSeparados[] = conjuntos2.split(",");
@@ -20,26 +19,23 @@ public class EncontraPa {
 		try{
 		verificaSeEUmaPa(numerosInteiros);
 			
-		System.out.print("Digite o enÃ©simo termo que deseja descobrir:");
+		System.out.print("Digite o enésimo termo que deseja descobrir:");
 		int n = entrada.nextInt();
 		
-		System.out.println("O termo "+n+" dessa PA Ã© "+calcula(numerosInteiros, n)+". " +
+		System.out.println("O termo "+n+" dessa PA é "+calcula(numerosInteiros, n)+". " +
 				"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
 		
 		desejaContinuar();
 		}catch(EncontraPAException e){
-			System.out.println("NÃ£o Ã© uma P.A.!");
+			System.out.println("Não é uma P.A.!");
 			desejaContinuar();
 		}
 
 	}
 
 	private static void verificaSeEUmaPa(int[] numerosInteiros) throws EncontraPAException {
-
-		int a1 = numerosInteiros[0];
-		int segundoNumero = numerosInteiros[1];
-		
-		int r = segundoNumero - a1;
+	
+		int r =  numerosInteiros[1] - numerosInteiros[0];
 		
 		int rTeste = 0;
 		
@@ -56,15 +52,15 @@ public class EncontraPa {
 		
 		Scanner entrada = new Scanner(System.in);
 		
-		System.out.println("Deseja continuar? Se sim digite Ok, se nÃ£o digite N.");
+		System.out.println("Deseja continuar? Se sim digite Ok, se não digite N.");
 		String simOuNao = entrada.nextLine();
 		
 		if("Ok".equalsIgnoreCase(simOuNao)){
 			main(null);
 		}else if("N".equalsIgnoreCase(simOuNao)){
-			System.out.println("VocÃª escolheu parar por aqui!");
+			System.out.println("Você escolheu parar por aqui!");
 		}else{
-			System.out.println("OpÃ§Ã£o invÃ¡lida! Digite Ok para continuar e N para sair");
+			System.out.println("Opção inválida! Digite Ok para continuar e N para sair");
 			simOuNao = entrada.nextLine();
 			main(null);
 		}
@@ -77,9 +73,8 @@ public class EncontraPa {
 	int segundoNumero = numerosInteiros[1];
 	
 	int r = segundoNumero - a1;
-	int an = 0;
 
-	an = a1 + ((n - 1)* r); 
+	int an = a1 + ((n - 1)* r); 
 
 		return an;
 	}
