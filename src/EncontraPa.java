@@ -38,7 +38,7 @@ public class EncontraPa {
 		System.out.print("Digite S para continuar e N para sair: ");
 		String simOuNao = entrada.nextLine();
 		if(simOuNao.equalsIgnoreCase("n")){
-		System.out.print("Você parou por aqui. ");
+			System.out.print("Você escolheu parar por aqui. Até a próxima!");
 		}else if(simOuNao.equalsIgnoreCase("s")){
 			main(null);
 		}else{
@@ -48,7 +48,7 @@ public class EncontraPa {
 				if(simOuNao.equalsIgnoreCase("n")){
 					System.out.print("Você escolheu parar por aqui. Até a próxima!");
 				}else if(simOuNao.equalsIgnoreCase("s")){
-				main(null);
+					main(null);
 				}	
 			}
 		}
