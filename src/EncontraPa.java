@@ -3,34 +3,56 @@ import java.util.Scanner;
 public class EncontraPa {
 	
 	public static void main(String[]args) throws EncontraPAException {
-		
 		Scanner entrada = new Scanner(System.in);
-		System.out.print("Digite uma sequencia numérica separando os números por vírgula:");
+		
+		System.out.print("Digite uma sequencia numÃ©rica separando os nÃºmeros por vÃ­rgula:");
 		String conjuntos = entrada.nextLine();
 		String conjuntos2 = conjuntos.trim();
 		String numerosSeparados[] = conjuntos2.split(",");
-		
+			
 		int[] numerosInteiros = new int[numerosSeparados.length];
 		
-		for(int i = 0; i < numerosSeparados.length; i++){
-			numerosInteiros[i] = Integer.parseInt(numerosSeparados[i]);
+			for(int i = 0; i < numerosSeparados.length; i++){
+				numerosInteiros[i] = Integer.parseInt(numerosSeparados[i]);
 		}
 		
 		try{
-		verificaSeEUmaPa(numerosInteiros);
+			verificaSeEUmaPa(numerosInteiros);
+				
+			System.out.print("Digite o enÃ©simo termo que deseja descobrir:");
+			int n = entrada.nextInt();
 			
-		System.out.print("Digite o enésimo termo que deseja descobrir:");
-		int n = entrada.nextInt();
-		
-		System.out.println("O termo "+n+" dessa PA é "+calcula(numerosInteiros, n)+". " +
-				"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
-		
-		desejaContinuar();
+			System.out.println("O termo "+n+" dessa PA Ã© "+calcula(numerosInteiros, n)+". " +
+					"PA = "+conjuntos+"..."+calcula(numerosInteiros, n));
+			
+			continuar();
+			
 		}catch(EncontraPAException e){
-			System.out.println("Não é uma P.A.!");
-			desejaContinuar();
+			System.out.println("NÃ£o Ã© uma P.A.!");
+			continuar();
 		}
+	}
 
+	private static void continuar() throws EncontraPAException {
+		Scanner entrada = new Scanner(System.in);
+		System.out.print("Digite S para continuar e N para sair: ");
+		String simOuNao = entrada.nextLine();
+		if(simOuNao.equalsIgnoreCase("n")){
+		System.out.print("VocÃª parou por aqui. ");
+		}else if(simOuNao.equalsIgnoreCase("s")){
+			main(null);
+		}else{
+			while(!(simOuNao.equals("n"))&&(!(simOuNao.equals("s")))){
+				System.out.print("OpÃ§Ã£o invÃ¡lida! Digite S para continuar e N para sair: ");
+				simOuNao = entrada.nextLine();
+				if(simOuNao.equalsIgnoreCase("n")){
+					System.out.print("VocÃª escolheu parar por aqui. AtÃ© a prÃ³xima!");
+				}else if(simOuNao.equalsIgnoreCase("s")){
+				main(null);
+				}	
+			}
+		}
+		
 	}
 
 	private static void verificaSeEUmaPa(int[] numerosInteiros) throws EncontraPAException {
@@ -46,25 +68,6 @@ public class EncontraPa {
 		if(r != rTeste || numerosInteiros.length <= 2){
 			throw new EncontraPAException(null);	
 		}
-	}
-
-	private static void desejaContinuar() throws EncontraPAException {
-		
-		Scanner entrada = new Scanner(System.in);
-		
-		System.out.println("Deseja continuar? Se sim digite Ok, se não digite N.");
-		String simOuNao = entrada.nextLine();
-		
-		if("Ok".equalsIgnoreCase(simOuNao)){
-			main(null);
-		}else if("N".equalsIgnoreCase(simOuNao)){
-			System.out.println("Você escolheu parar por aqui!");
-		}else{
-			System.out.println("Opção inválida! Digite Ok para continuar e N para sair");
-			simOuNao = entrada.nextLine();
-			main(null);
-		}
-		
 	}
 
 	public static int calcula(int[] numerosInteiros, int n) {
